@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TimeEntryController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/projects/{project}/time-entries', [TimeEntryController::class, 'index']);
     Route::post('/projects/{project}/time-entries/start', [TimeEntryController::class, 'start']);
     Route::post('/time-entries/{timeEntry}/stop', [TimeEntryController::class, 'stop']);
+
+    Route::get('/projects/{project}/expenses', [ExpenseController::class, 'index']);
+    Route::post('/projects/{project}/expenses', [ExpenseController::class, 'store']);
+    Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
+    Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
 });
