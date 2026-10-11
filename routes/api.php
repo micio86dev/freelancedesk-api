@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TimeEntryController;
@@ -34,4 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
 
     Route::get('/dashboard', DashboardController::class);
+
+    Route::post('/clients/{client}/quotes', [QuoteController::class, 'store']);
+    Route::get('/quotes/{quote}', [QuoteController::class, 'show']);
+    Route::put('/quotes/{quote}', [QuoteController::class, 'update']);
 });
