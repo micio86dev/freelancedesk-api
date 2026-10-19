@@ -20,7 +20,7 @@ class Invoice extends Model
         'notes',
     ];
 
-    /*protected function casts(): array
+    protected function casts(): array
     {
         return [
             'status' => InvoiceStatus::class,
@@ -37,5 +37,5 @@ class Invoice extends Model
     public function items(): HasMany
     {
         return $this->hasMany(InvoiceItem::class);
-    }*/
+    }
 }

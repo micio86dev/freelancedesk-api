@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\ExpenseController;
@@ -39,4 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/clients/{client}/quotes', [QuoteController::class, 'store']);
     Route::get('/quotes/{quote}', [QuoteController::class, 'show']);
     Route::put('/quotes/{quote}', [QuoteController::class, 'update']);
+
+    Route::post('/clients/{client}/invoices', [InvoiceController::class, 'store']);
+    Route::get('/invoices/{invoice}', [InvoiceController::class, 'show']);
+    Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
 });
