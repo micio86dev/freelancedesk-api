@@ -24,6 +24,7 @@ class ClientController extends Controller
                     ->orWhere('email', 'ilike', "%{$search}%");
             });
         })->latest()->paginate(20);
+
         return ClientResource::collection($clients);
     }
 
@@ -39,6 +40,7 @@ class ClientController extends Controller
     public function show(Client $client): ClientResource
     {
         Gate::authorize('view', $client);
+
         return new ClientResource($client);
     }
 
@@ -46,6 +48,7 @@ class ClientController extends Controller
     {
         Gate::authorize('update', $client);
         $client->update($request->validated());
+
         return new ClientResource($client->refresh());
     }
 
@@ -53,6 +56,7 @@ class ClientController extends Controller
     {
         Gate::authorize('delete', $client);
         $client->delete();
+
         return response()->json(null, 204);
     }
 }
