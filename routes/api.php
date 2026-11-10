@@ -3,10 +3,10 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\QuoteController;
-use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TimeEntryController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +17,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/dashboard', DashboardController::class);
+
     Route::apiResource('clients', ClientController::class);
     Route::post('/clients/{client}/projects', [ProjectController::class, 'store']);
     Route::apiResource('projects', ProjectController::class)->except('store');
@@ -34,8 +36,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/projects/{project}/expenses', [ExpenseController::class, 'store']);
     Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
     Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
-
-    Route::get('/dashboard', DashboardController::class);
 
     Route::post('/clients/{client}/quotes', [QuoteController::class, 'store']);
     Route::get('/quotes/{quote}', [QuoteController::class, 'show']);
